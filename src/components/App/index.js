@@ -35,7 +35,7 @@ const App = () => {
           <Route exact path='/floor/:id' component={ContentfulFloor} />
           <Route exact path='/hours' component={Hours} />
           <Route exact path='/secure/:id' component={SecureContentfulPage} />
-          <Route exact path='/search/:query' component={SearchPage} />
+          <Route exact path='/search' component={SearchPage} />
           <Route exact path='/:id' component={ContentfulPage} />
         </Switch>
       </PageWrapper>

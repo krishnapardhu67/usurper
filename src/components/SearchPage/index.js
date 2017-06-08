@@ -12,7 +12,7 @@ class SearchPage extends Component {
     this.key = 'AIzaSyDxN0OmGofQqHr7d6CrT6DzJ-4-498_BaE'
     this.cx = '014724449652618811936:oztyn9vo9f8'
 
-    const query = this.props.location.pathname.replace('/search/', '')
+    const query = window.location.search.replace('?q=', '')
     const displayQuery = query.replace(/(&start=\d+)/, '')
 
     this.state = {
