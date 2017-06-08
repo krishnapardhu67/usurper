@@ -12,6 +12,7 @@ import Hours from '../../components/Hours/Page'
 import ContentfulPage from '../../components/Contentful/Page'
 import SecureContentfulPage from '../../components/Contentful/SecurePage'
 import ContentfulFloor from '../../components/Contentful/Floor'
+import SearchPage from '../../components/SearchPage'
 import rootReducers from '../../reducers'
 import thunkMiddleware from 'redux-thunk'
 
@@ -34,6 +35,7 @@ const App = () => {
           <Route exact path='/floor/:id' component={ContentfulFloor} />
           <Route exact path='/hours' component={Hours} />
           <Route exact path='/secure/:id' component={SecureContentfulPage} />
+          <Route exact path='/search/:query' component={SearchPage} />
           <Route exact path='/:id' component={ContentfulPage} />
         </Switch>
       </PageWrapper>
