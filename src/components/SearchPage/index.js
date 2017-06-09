@@ -1,70 +1,28 @@
 'use strict'
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import fetch from 'isomorphic-fetch'
-import SearchResultInfo from './SearchResultInfo'
-import SearchResults from './SearchResults'
-import SearchPager from './SearchPager'
+import { connect } from 'react-redux'
+import SearchPage from './presenter.js'
 
-class SearchPage extends Component {
-  constructor (props) {
-    super(props)
-    this.key = 'AIzaSyDxN0OmGofQqHr7d6CrT6DzJ-4-498_BaE'
-    this.cx = '014724449652618811936:oztyn9vo9f8'
+import { fetchResults } from '../../actions/search.js'
 
-    const query = window.location.search.replace('?q=', '')
-    const displayQuery = query.replace(/(&start=\d+)/, '')
-
-    this.state = {
-      query: query,
-      displayQuery: displayQuery,
-      items: [],
-      searchInformation: {
-        totalResults: 0,
-      },
-      queries: {},
-    }
-    this.fetchResults = this.fetchResults.bind(this)
-  }
-
-  fetchResults (query) {
-    return fetch(
-      'https://www.googleapis.com/customsearch/v1?key=' + this.key +
-      '&cx=' + this.cx +
-      '&q=' + query
-    )
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          items: json.items,
-          searchInformation: json.searchInformation,
-          queries: json.queries,
-        })
-      })
-  }
-
-  componentWillMount () {
-    this.fetchResults(this.state.query)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.fetchResults(nextProps.location.pathname.replace('/search/', ''))
-  }
-
-  render () {
-    return (
-      <div className='search-results'>
-        <h1>Search Results for <i>'{this.state.displayQuery}'</i></h1>
-        <SearchResultInfo searchInformation={this.state.searchInformation} />
-        <SearchResults items={this.state.items} />
-        <SearchPager
-          queries={this.state.queries}
-          searchInformation={this.state.searchInformation}
-          displayQuery={this.state.displayQuery}
-        />
-      </div>
-    )
+const mapStateToProps = (state, ownProps) => {
+  console.log('search', state.search)
+  return {
+    query: state.search.query,
+    items: state.search.items,
+    searchInformation: state.search.searchInformation,
+    queries: state.search.queries,
   }
 }
 
-export default SearchPage
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    fetchResults: (query) => {
+      dispatch(fetchResults(query))
+    },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchPage)
