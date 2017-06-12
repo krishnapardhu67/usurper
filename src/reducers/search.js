@@ -57,7 +57,6 @@ export default (
     case SITE_SEARCH_REQUEST:
       return Object.assign({}, state, { query: action.query })
     case SITE_SEARCH_RESPONSE:
-      console.log(action)
       return Object.assign({}, state, {
         items: action.items,
         searchInformation: action.searchInformation,

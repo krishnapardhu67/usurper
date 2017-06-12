@@ -5,7 +5,6 @@ import './style.css'
 
 const SearchResult = (props) => {
   const item = props.item
-  // console.log(item)
   return (<div>
     <Link to={item.link}><div className='search-result-title'>{item.htmlTitle}</div>
       <div className='search-result-display-link'>{item.displayLink}</div>
