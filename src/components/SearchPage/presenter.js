@@ -5,6 +5,7 @@ import fetch from 'isomorphic-fetch'
 import SearchResultInfo from './SearchResultInfo'
 import SearchResults from './SearchResults'
 import SearchPager from './SearchPager'
+import PageTitle from '../PageTitle'
 
 class SearchPage extends Component {
   componentWillMount () {
@@ -25,7 +26,6 @@ class SearchPage extends Component {
       displayQuery = this.props.query.replace(/(&start=\d+)/, '')
       pagerQuery += displayQuery
     }
-
     return (
       <div className='search-results'>
         <h1>Search Results for <i>'{displayQuery}'</i></h1>
@@ -35,6 +35,7 @@ class SearchPage extends Component {
           queries={this.props.queries}
           pagerQuery={pagerQuery}
         />
+        <PageTitle title='Search' />
       </div>
     )
   }
