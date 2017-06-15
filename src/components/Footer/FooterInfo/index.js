@@ -1,5 +1,7 @@
 import React from 'react'
 import Logo from '../images/logo.png'
+import Chat from '../images/chat.png'
+import Link from '../../Link'
 
 const FooterInfo = () => {
   return (
@@ -15,7 +17,7 @@ const FooterInfo = () => {
           </div>
           <div className='col-xs-12 col-md-4'>
             <div className='box center'>
-              <a href='/page/hours/' className='hours'>Hours</a>
+              <a href='/hours/' className='hours'>Hours</a>
             </div>
           </div>
           <div className='col-xs-12 col-md-4'>
@@ -24,6 +26,10 @@ const FooterInfo = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div id='chat'>
+        <Link to='/chat' className='chat-button'><img src={Chat} /> Chat with us</Link>
+
       </div>
     </div>
   )
