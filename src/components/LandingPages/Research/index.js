@@ -1,10 +1,12 @@
 import React from 'react'
-import PageTitle from '../../PageTitle'
+import LandingPage from '../index.js'
 import Link from '../../Link'
 
 const Research = () => {
   return (
-    <div>
+
+    <LandingPage title='Research' className='content'>
+
       <h1>All Research</h1>
       <hr />
       <div className='row'>
@@ -80,8 +82,7 @@ const Research = () => {
 
       </div>
 
-      <PageTitle title='Research' />
-    </div>
+    </LandingPage>
   )
 }
 
