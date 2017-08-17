@@ -1,85 +1,74 @@
-.news-card img {
-  float: left;
-  border: solid 2px #fff;
-  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  margin-right: 15px;
-  max-width: 275px;
+.timeline {
+  background: #fff;
+  padding: 3px 6px;
+  box-shadow: 0px 0px 2px rgba(0,0,0,.3)
 }
 
-.date-as-calendar {
-	float: left;
-  font-variant: normal;
-  font-style: normal;
-  font-weight: normal;
-  font-family: GPCBook, sans-serif;
-
-  /* It seems vertical-align: baseline does not work correctly with display: inline-flex. */
-  vertical-align: top;
-
-  /* margin: 1ex; */
-
-  color: #999;
-  background: white;
-
-
-
-  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  margin-right: 15px;
-  max-width: 275px;
-   width: 90px;
-   height: auto;
+.events-listing .event-card h3 {
+  margin-bottom: 10px;
+  font-family: GPBold,sans-serif;
+  font-size: 18px
 }
 
-.date-as-calendar .weekday,
-.date-as-calendar .day,
-.date-as-calendar .month,
-.date-as-calendar .year {
-  text-align: center;
-  line-height: 1.0;
-}
-
-.date-as-calendar .month {
-  text-transform: uppercase;
-  background: #aa272f;
-  color: white;
-}
-
-.inline-flex.date-as-calendar {
-  display: inline-flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-
-
+.events-listing .date-as-calendar {
+  font-size: 16px;
+  color: #696969;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: flex;
 
 }
-.inline-flex.date-as-calendar .weekday,
-.inline-flex.date-as-calendar .day,
-.inline-flex.date-as-calendar .month,
-.inline-flex.date-as-calendar .year {
-  display: block;
-  flex: 1 1 auto;
+
+.events-listing .date-as-calendar span {
 }
-.inline-flex.date-as-calendar .month {
+
+.events-listing .event-card {
+  margin-bottom: 1.5em;
+  margin-left: 1em;
+}
+
+.events-listing .event-card-text {
+  position: relative;
+}
+
+.events-listing .event-card-text::before {
+  content: "•";
+  position: absolute;
+  left: -.8em;
+  top: .3em;
+  font-size: 20px;
+}
+
+.events-listing .weekday {
   order: 1;
-  font-size: 1em;
-  padding: 0.3em 0 ;
 }
-.inline-flex.date-as-calendar .weekday {
-  order: 2;
-  font-size: 0.6125em;
-  padding: 3px 0;
-}
-.inline-flex.date-as-calendar .day {
+
+.events-listing .day {
   order: 3;
-  font-size: 2em;
 }
-.inline-flex.date-as-calendar .year {
+
+.events-listing .month {
+  order: 2;
+}
+
+.events-listing .year {
   order: 4;
-  font-size: 0.87750em;
-  padding: 3px 0;
+}
+
+
+
+.events-listing .weekday::after {
+  content: "\00a0";
+}
+
+.events-listing .day::after {
+  content: ",\00a0";
+}
+
+.events-listing .month::after {
+  content: "\00a0";
+}
+
+.events-listing .year {
+  order: 4;
 }

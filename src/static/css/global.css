@@ -1810,6 +1810,10 @@ address {
   float: left;
 }
 
+.news-page .news-card {
+  width: 100%;
+}
+
 .news-card img {
   float: left;
   border: solid 2px #fff;
@@ -1861,6 +1865,32 @@ address {
   display: inline-block;
   width: calc(100% - 110px)
 }
+
+.home .event-card .description {
+  display: none;
+}
+
+.event-link {
+  text-decoration: none;
+}
+
+.events-listing .event-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.events-listing .event-card-text {
+  order: 1;
+}
+
+.events-listing time {
+  order: 2;
+}
+
+.events-listing .description {
+  order: 3;
+}
+
 .description, header {
   overflow: hidden;
 }

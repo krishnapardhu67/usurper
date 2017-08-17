@@ -14,10 +14,10 @@ const contactPoints = [
     'points': [
       'circulationservicedesk',
       'askusdesk',
-      'reservesmicrotextandmediadesk',
       'admin',
       'ill-office',
       'course-reserves-office',
+      'reservesmicrotextandmediadesk',
       'docdel-office',
     ],
   },

@@ -8,9 +8,11 @@ import './style.css'
 
 const News = (entries) => {
   return (
-    <div className='col-md-8 col-xs-12'>
+      <div className='news-page'>
       <PageTitle title='News' />
       <SearchProgramaticSet open={false} />
+      <div className='row'>
+      <div className='col-md-9 col-xs-12'>
       <section aria-label='News'>
         {
           entries.map((entry) => {
@@ -30,6 +32,15 @@ const News = (entries) => {
           })
         }
       </section>
+      </div>
+      <div className='col-md-2 col-md-offset-1 col-xs-12'>
+        <h3>Academic Year</h3>
+          <ul>
+            <li><Link to='#'>2017-2018</Link></li>
+            <li><Link to=''>2016-2017</Link></li>
+          </ul>
+      </div>
+      </div>
     </div>
   )
 }

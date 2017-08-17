@@ -7,7 +7,7 @@ import './style.css'
 
 const makeEntry = (entry) => {
   return (
-    <Link key={entry.slug} ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear} to={'/event/' + entry.slug}>
+    <Link key={entry.slug} ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear} to={'/event/' + entry.slug} className='event-link'>
       <div className='event-card'>
         <time dateTime='2014-09-24' className='date-as-calendar inline-flex'>
           <span className='weekday'>{entry.displayWeekday}</span>
@@ -33,7 +33,7 @@ const makeSection = (title, entries) => {
 
   return (
     <section aria-label={title}>
-      <h3>{title}</h3>
+      <h3 className='timeline'>{title}</h3>
       {
         entries.map(makeEntry)
       }
@@ -43,8 +43,12 @@ const makeSection = (title, entries) => {
 
 const Events = (props) => {
   return (
+    <div>
+    <PageTitle title='Events' />
+    <div className='row events-listing'>
+
     <div className='col-md-8 col-xs-12' >
-      <PageTitle title='Events' />
+      
       <SearchProgramaticSet open={false} />
       {
         makeSection('Current and Upcoming Events', props.present)
@@ -52,6 +56,10 @@ const Events = (props) => {
       {
         makeSection('Past Events', props.past)
       }
+    </div>
+    <div className='col-md-3 col-md-offset-1 col-xs-12' >
+    </div>
+    </div>
     </div>
   )
 }

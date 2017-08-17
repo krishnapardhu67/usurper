@@ -11,7 +11,7 @@ const Events = (entries) => {
         {
           entries.map((entry) => {
             return (
-              <Link key={entry.slug} ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear} to={'/event/' + entry.slug}>
+              <Link key={entry.slug} ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear} to={'/event/' + entry.slug} className='event-link'>
                 <div className='event-card'>
                   <time dateTime='2014-09-24' className='date-as-calendar inline-flex'>
                     <span className='weekday'>{entry.displayWeekday}</span>

@@ -8,7 +8,7 @@
   max-width: 275px;
 }
 
-.date-as-calendar {
+.news .date-as-calendar {
 	float: left;
   font-variant: normal;
   font-style: normal;
@@ -34,21 +34,21 @@
    height: auto;
 }
 
-.date-as-calendar .weekday,
-.date-as-calendar .day,
-.date-as-calendar .month,
-.date-as-calendar .year {
+.news .date-as-calendar .weekday,
+.news .date-as-calendar .day,
+.news .date-as-calendar .month,
+.news .date-as-calendar .year {
   text-align: center;
   line-height: 1.0;
 }
 
-.date-as-calendar .month {
+.news .date-as-calendar .month {
   text-transform: uppercase;
   background: #aa272f;
   color: white;
 }
 
-.inline-flex.date-as-calendar {
+.news .inline-flex.date-as-calendar {
   display: inline-flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -57,28 +57,28 @@
 
 
 }
-.inline-flex.date-as-calendar .weekday,
-.inline-flex.date-as-calendar .day,
-.inline-flex.date-as-calendar .month,
-.inline-flex.date-as-calendar .year {
+.news .inline-flex.date-as-calendar .weekday,
+.news .inline-flex.date-as-calendar .day,
+.news .inline-flex.date-as-calendar .month,
+.news .inline-flex.date-as-calendar .year {
   display: block;
   flex: 1 1 auto;
 }
-.inline-flex.date-as-calendar .month {
+.news .inline-flex.date-as-calendar .month {
   order: 1;
   font-size: 1em;
   padding: 0.3em 0 ;
 }
-.inline-flex.date-as-calendar .weekday {
+.news .inline-flex.date-as-calendar .weekday {
   order: 2;
   font-size: 0.6125em;
   padding: 3px 0;
 }
-.inline-flex.date-as-calendar .day {
+.news .inline-flex.date-as-calendar .day {
   order: 3;
   font-size: 2em;
 }
-.inline-flex.date-as-calendar .year {
+.news .inline-flex.date-as-calendar .year {
   order: 4;
   font-size: 0.87750em;
   padding: 3px 0;
