@@ -1874,22 +1874,7 @@ address {
   text-decoration: none;
 }
 
-.events-listing .event-card {
-  display: flex;
-  flex-direction: column;
-}
 
-.events-listing .event-card-text {
-  order: 1;
-}
-
-.events-listing time {
-  order: 2;
-}
-
-.events-listing .description {
-  order: 3;
-}
 
 .description, header {
   overflow: hidden;

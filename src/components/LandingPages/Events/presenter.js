@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from '../../Image'
 import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
 import PageTitle from '../../PageTitle'
@@ -9,6 +10,7 @@ const makeEntry = (entry) => {
   return (
     <Link key={entry.slug} ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear} to={'/event/' + entry.slug} className='event-link'>
       <div className='event-card'>
+        <img src='http://via.placeholder.com/350x197' className='cover' />
         <time dateTime='2014-09-24' className='date-as-calendar inline-flex'>
           <span className='weekday'>{entry.displayWeekday}</span>
           <span className='day'>{entry.displayDay}</span>
@@ -34,9 +36,9 @@ const makeSection = (title, entries) => {
   return (
     <section aria-label={title}>
       <h3 className='timeline'>{title}</h3>
-      {
+      <div className='event-grid'>{
         entries.map(makeEntry)
-      }
+      }</div>
     </section>
   )
 }
