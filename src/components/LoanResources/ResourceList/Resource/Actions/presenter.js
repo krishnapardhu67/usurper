@@ -56,9 +56,9 @@ const AlephRenew = (item, renewal, onRenewClick, alephMessage) => {
   }
 }
 
-export const hasActions = (item) => {
+export const hasActions = (item, renewal) => {
   return (
-    (AlephRenew(item, null, (e) => {}, null) !== null) ||
+    (renewal && AlephRenew(item, null, (e) => {}, null) !== null) ||
     (IllWeb(item, null) !== null) ||
     (IllView(item, null) !== null)
   )

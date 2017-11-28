@@ -39,18 +39,18 @@ export const handleResources = (type) => {
   }
 }
 
-const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0) => {
+const doQuery = (dispatch, service, query, func, token, stateKey, retry = 0) => {
   dispatch(states.requestPersonal(stateKey))
   states.startRequest(
-    Config.resourcesAPI + '/' + service + '?type=' + type,
+    Config.resourcesAPI + '/' + service + query,
     dispatch,
     func,
     token,
     (e) => {
       console.log(e)
       if (retry === 0) {
-        console.log('Error, retrying ' + service + ' ' + type)
-        doQuery(dispatch, service, type, func, token, stateKey, 1)
+        console.log('Error, retrying ' + service + ' ' + query)
+        doQuery(dispatch, service, query, func, token, stateKey, 1)
       } else {
         dispatch(states.recievePersonal(stateKey, statuses.ERROR, e.message))
       }
@@ -61,7 +61,7 @@ const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0) => {
 export const getUser = () => {
   return (dispatch, getState) => {
     var state = getState().personal
-    doQuery(dispatch, 'aleph', 'user', handleUser, state.login.token, 'user')
+    doQuery(dispatch, 'aleph', '?type=user', handleUser, state.login.token, 'user')
   }
 }
 
@@ -69,8 +69,11 @@ export const getPending = () => {
   return (dispatch, getState) => {
     let state = getState().personal
     let token = state.login.token
-    doQuery(dispatch, 'aleph', 'pending', handleResources('aleph'), token, 'alephPending')
-    doQuery(dispatch, 'illiad', 'pending', handleResources('ill'), token, 'illPending')
+    doQuery(dispatch, 'aleph', '?type=pending', handleResources('ndu'), token, 'nduPending')
+    doQuery(dispatch, 'aleph', '?type=pending&library=hcc50', handleResources('hcc'), token, 'hccPending')
+    doQuery(dispatch, 'aleph', '?type=pending&library=bci50', handleResources('bci'), token, 'bciPending')
+    doQuery(dispatch, 'aleph', '?type=pending&library=smc50', handleResources('smc'), token, 'smcPending')
+    doQuery(dispatch, 'illiad', '?type=pending', handleResources('ill'), token, 'illPending')
   }
 }
 
@@ -79,8 +82,11 @@ export const getBorrowed = () => {
     let state = getState().personal
     let token = state.login.token
 
-    doQuery(dispatch, 'aleph', 'borrowed', handleResources('aleph'), token, 'alephHave')
-    doQuery(dispatch, 'illiad', 'borrowed', handleResources('ill'), token, 'illHave')
+    doQuery(dispatch, 'aleph', '?type=borrowed', handleResources('ndu'), token, 'nduHave')
+    doQuery(dispatch, 'aleph', '?type=borrowed&library=hcc50', handleResources('hcc'), token, 'hccHave')
+    doQuery(dispatch, 'aleph', '?type=borrowed&library=bci50', handleResources('bci'), token, 'bciHave')
+    doQuery(dispatch, 'aleph', '?type=borrowed&library=smc50', handleResources('smc'), token, 'smcHave')
+    doQuery(dispatch, 'illiad', '?type=borrowed', handleResources('ill'), token, 'illHave')
   }
 }
 

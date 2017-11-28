@@ -10,7 +10,7 @@ const Card = (className, prefix, data, label) => {
   return <div className={className} />
 }
 
-const actionsButton = (item, toggleHidden) => {
+const actionsButton = (item, toggleHidden, renewal) => {
   if (hasActions(item)) {
     return (
       <div className={'actions-button'}>
@@ -37,7 +37,7 @@ const ResourceList = (props) => {
       { props.borrowed && Card('card-due', '', props.item.dueDate, 'Due: ' + props.item.dueDate) }
       { Card('card-pickup', 'Pickup Location: ', props.item.pickupLocation) }
 
-      { actionsButton(props.item, props.toggleHidden) }
+      { actionsButton(props.item, props.toggleHidden, props.renewal) }
       <div className={'actions' + (props.hidden ? '-hidden' : '')}>
         <Actions item={props.item} alephId={props.alephId} renewal={props.renewal} />
       </div>
