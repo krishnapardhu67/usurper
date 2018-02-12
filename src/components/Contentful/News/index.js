@@ -20,7 +20,7 @@ export class ContentfulNewsContainer extends Component {
   componentDidMount () {
     const newsSlug = this.props.match.params.id
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-    this.props.fetchNews(newsSlug, preview, false)
+    this.props.fetchNews(newsSlug, preview)
   }
 
   componentWillReceiveProps (nextProps) {
