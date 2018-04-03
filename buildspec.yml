@@ -1,19 +1,19 @@
+---
 version: 0.2
-
-env:
-  variables:
-    AWS_DEFAULT_REGION: "us-east-1"
 
 phases:
   install:
     commands:
       - npm install -g yarn
-      - yarn
-
+  pre_build:
+    commands:
+      - yarn install --pure-lockfile
   build:
     commands:
       - yarn build
 
-  post_build:
-    commands:
-      - aws s3 sync ./build/public s3://$REACT_OUTPUT --delete
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build/public
+...
