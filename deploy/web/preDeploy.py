@@ -26,7 +26,7 @@ def generateEnv(stage):
 
 def runTests():
   os.environ["CI"] = "Local"
-  output = scriptutil.executeCommand("yarn test")
+  output = scriptutil.executeCommand("cd ../.. && yarn test")
   return output.get("code") == 0
 
 

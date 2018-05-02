@@ -20,6 +20,14 @@ Parameters:
         ConstraintDescription: must be a valid DNS zone name
         Default: ''
 
+    TemplateBucket:
+      Type: String
+      Description: Bucket this (and code) is deployed in
+
+    TemplateFolder:
+      Type: String
+      Description: Location of template files
+
 Conditions:
 
     NoFQDN: !Equals
@@ -31,6 +39,21 @@ Conditions:
     -   ''
 
 Resources:
+    Role:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Principal:
+                Service:
+                  - "lambda.amazonaws.com"
+              Action:
+                - "sts:AssumeRole"
+        ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+          - arn:aws:iam::aws:policy/AmazonS3FullAccess
 
     Bucket:
         Type: AWS::S3::Bucket
@@ -57,6 +80,24 @@ Resources:
                     Resource: !Sub ${Bucket.Arn}/*
                     Principal:
                         CanonicalUser: !ImportValue wse-web-canonical-user-id
+
+    BackupBucket:
+        Type: AWS::S3::Bucket
+        Properties:
+            BucketName: !Sub ${AWS::StackName}-${AWS::AccountId}-contenful-backup
+
+    BackupLambda:
+      Type: AWS::Lambda::Function
+      Properties:
+        FunctionName: !Sub ${AWS::StackName}-${AWS::AccountId}-backup
+        Description: backup contentful function
+        Runtime: nodejs8.10
+        Handler: backup/index.handler
+        Timeout: 30
+        Role: arn:aws:iam::333680067100:role/usurper-devjon-Role-1LZREC0I5OQ9N
+        Code:
+          S3Bucket: !Ref TemplateBucket
+          S3Key: !Sub ${TemplateFolder}/backup.zip
 
     Distribution:
         Type: AWS::CloudFront::Distribution
@@ -130,6 +171,10 @@ Outputs:
     BucketName:
         Description: Name of S3 bucket to hold website content
         Value: !Ref Bucket
+
+    BackupBucket:
+        Description: Name of S3 bucket to hold contentful backups
+        Value: !Ref BackupBucket
 
     CNAME:
         Description: Website CNAME target

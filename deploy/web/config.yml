@@ -17,7 +17,15 @@ Stacks:
       Parameters:
         AcmCertificateArn: ${CERT_ARN}
         FQDN: ${FQDN}
+        TemplateBucket: $DEPLOY_BUCKET
+        TemplateFolder: $DEPLOY_FOLDER
 
 Artifacts:
   Templates:
     - webTemplate.yml
+  Zips:
+    -
+      Name: backup
+      Files:
+        - ../backup/index.js
+        - ../backup/node_modules
