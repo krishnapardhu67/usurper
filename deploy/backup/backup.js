@@ -20,7 +20,7 @@ const AWS = require('aws-sdk')
 const S3 = new AWS.S3({
   signatureVersion: 'v4',
 })
-const key = new Date().toISOString() + ".tgz"
+const key = (new Date().toISOString() + ".tgz").replace(/[:]/g, "-")
 
 const backupSpaces = async () => {
   try {
@@ -51,7 +51,6 @@ const backupSpaces = async () => {
       Key     : `${bucketBaseDir}/${key}`,
       Body    : fs.readFileSync(key),
     }
-
     await S3.putObject(params).promise()
 
     console.log("exported")
